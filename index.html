@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <title>SäkkijärviRP Crips</title>
+  <style>
+    /* Yleinen tyyli */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      background-color: #000;
+    }
+
+    /* Alkusivu */
+    .home-page, .sakkijarvi-page, .police-page {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Alkusivun taustakuva */
+    .home-page {
+      background-image: url('https://gta5mod.net/wp-content/uploads/2021/04/LA-Nayba-Hood.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 40px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    /* Napit */
+    .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      margin: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-blue {
+      background-color: #7289da;
+      color: white;
+    }
+
+    .btn-blue:hover {
+      background-color: #5e6f98;
+    }
+
+    .btn-red {
+      background-color: #ff3333;
+      color: white;
+    }
+
+    .btn-red:hover {
+      background-color: #cc2929;
+    }
+
+    /* Kolme pistettä oikeassa yläkulmassa */
+    .menu {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: transparent;
+      padding: 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 40px;
+      color: white;
+    }
+
+    .menu-options {
+      display: none;
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background-color: transparent;
+      padding: 20px;
+      border-radius: 8px;
+      width: 200px;
+      text-align: left;
+      margin-top: 5px;
+      list-style-type: none;
+    }
+
+    .menu-options a {
+      color: white;
+      display: block;
+      margin: 10px 0;
+      text-decoration: none;
+    }
+
+    .menu-options a:hover {
+      text-decoration: underline;
+    }
+
+    /* SäkkijärviRP -sivun taustakuva */
+    .sakkijarvi-page {
+      background-image: url('https://gta5mod.net/wp-content/uploads/2021/04/LA-Nayba-Hood4.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Poliisi -sivun sisältö */
+    .police-page {
+      background-color: rgba(255, 255, 255, 0.8);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .police-page img {
+      width: 70%;
+      border-radius: 8px;
+    }
+
+    /* Modaalin tyyli */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 700px;
+    }
+
+    .modal img {
+      width: 100%;
+    }
+
+    .modal-header {
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .close {
+      color: #aaa;
+      font-size: 28px;
+      font-weight: bold;
+      position: absolute;
+      top: 10px;
+      right: 25px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- Alkusivu -->
+<div class="home-page" id="home-page">
+  <div class="overlay">
+    <h1>SäkkijärviRP Crips</h1>
+    <a class="btn btn-blue" href="https://discord.gg/vnWyEg5atM" target="_blank">Liity Crips Discordiin</a><br>
+  </div>
+
+  <!-- Kolme pistettä oikeassa yläkulmassa -->
+  <div class="menu" onclick="toggleMenu()">
+    &#x22EE;
+    <div class="menu-options" id="menu-options">
+      <a href="javascript:void(0)" onclick="openSakkijarvi()" class="btn btn-blue">SäkkijärviRP</a>
+      <a href="javascript:void(0)" onclick="openJengiTilat()" class="btn btn-blue">Jengi tilat</a>
+      <a href="javascript:void(0)" onclick="openPolice()" class="btn btn-red">Poliisi</a>
+    </div>
+  </div>
+</div>
+
+<!-- SäkkijärviRP -sivun sisältö -->
+<div id="sakkijarvi" class="sakkijarvi-page" style="display:none;">
+  <div class="overlay">
+    <h1>SäkkijärviRP</h1>
+    <a class="btn btn-blue" href="https://discord.gg/UwXWxtWzmH" target="_blank">Liity Säkkijärven Discordiin</a><br>
+    <button class="btn btn-blue" onclick="goHome()">Palaa Alkusivulle</button>
+  </div>
+</div>
+
+<!-- Poliisi -sivun sisältö -->
+<div id="police" class="police-page" style="display:none;">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Pig_farm_Vampula_9.jpg" alt="Poliisi">
+  <button class="btn btn-blue" onclick="goHome()">Palaa Alkusivulle</button>
+</div>
+
+<!-- Jengi Tilat Modaalin sisältö -->
+<div id="jengi-tilat-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <iframe width="100%" height="500" src="https://www.youtube.com/embed/5ic-V4HB6vs?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
+</div>
+
+<script>
+  var menuOpen = false;
+
+  // Kolme pistettä menu
+  function toggleMenu() {
+    menuOpen = !menuOpen;
+    var menuOptions = document.getElementById("menu-options");
+    if (menuOpen) {
+      menuOptions.style.display = "block";
+    } else {
+      menuOptions.style.display = "none";
+    }
+  }
+
+  // Avaa SäkkijärviRP -sivu
+  function openSakkijarvi() {
+    document.getElementById("home-page").style.display = 'none';
+    document.getElementById("sakkijarvi").style.display = 'flex';
+  }
+
+  // Avaa Poliisi -sivu
+  function openPolice() {
+    document.getElementById("home-page").style.display = 'none';
+    document.getElementById("police").style.display = 'flex';
+  }
+
+  // Avaa Jengi tilat modaalin
+  function openJengiTilat() {
+    document.getElementById("jengi-tilat-modal").style.display = 'block';
+  }
+
+  // Sulje modaalin
+  function closeModal() {
+    document.getElementById("jengi-tilat-modal").style.display = 'none';
+  }
+
+  // Palaa alkusivulle
+  function goHome() {
+    document.getElementById("home-page").style.display = 'flex';
+    document.getElementById("sakkijarvi").style.display = 'none';
+    document.getElementById("police").style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
